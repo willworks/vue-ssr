@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            font-size: 12px;
+            font-family: Ubuntu, simHei, sans-serif;
+            font-weight: 400
+        }
+
+        body {
+            font-size: 1rem
+        }
+
+        table,
+        td,
+        th {
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        table {
+            width: 100%
+        }
+
+        td,
+        th {
+            border: 1px solid #bcbcbc;
+            padding: 5px 10px
+        }
+
+        th {
+            background: #42b983;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #fff;
+            cursor: pointer
+        }
+
+        tr:nth-of-type(odd) {
+            background: #fff
+        }
+
+        tr:nth-of-type(even) {
+            background: #eee
+        }
+
+        fieldset {
+            border: 1px solid #BCBCBC;
+            padding: 15px;
+        }
+
+        input {
+            outline: none
+        }
+
+        input[type=text] {
+            border: 1px solid #ccc;
+            padding: .5rem .3rem;
+        }
+
+        input[type=text]:focus {
+            border-color: #42b983;
+        }
+
+        button {
+            outline: none;
+            padding: 5px 8px;
+            color: #fff;
+            border: 1px solid #BCBCBC;
+            border-radius: 3px;
+            background-color: #009A61;
+            cursor: pointer;
+        }
+        button:hover{
+            opacity: 0.8;
+        }
+
+        #app {
+            margin: 0 auto;
+            max-width: 640px
+        }
+
+        .form-group {
+            margin: 10px;
+        }
+
+        .form-group > label {
+            display: inline-block;
+            width: 10rem;
+            text-align: right;
+        }
+
+        .form-group > input,
+        .form-group > select {
+            display: inline-block;
+            height: 2.5rem;
+            line-height: 2.5rem;
+        }
+
+        .text-center{
+            text-align: center;
+        }
+
+        .pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 21px 0;
+            border-radius: 3px;
+        }
+
+        .pagination > li {
+            display: inline;
+        }
+
+        .pagination > li > a {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            line-height: 1.5;
+            text-decoration: none;
+            color: #009a61;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-left: -1px;
+            list-style: none;
+        }
+
+        .pagination > li > a:hover {
+            background-color: #eee;
+        }
+
+        .pagination .active {
+            color: #fff;
+            background-color: #009a61;
+            border-left: none;
+            border-right: none;
+        }
+
+        .pagination .active:hover {
+            background: #009a61;
+            cursor: default;
+        }
+
+        .pagination > li:first-child > a .p {
+            border-bottom-left-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+        .pagination > li:last-child > a {
+            border-bottom-right-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+
+    <fieldset>
+        <legend>
+            Create New Person
+        </legend>
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" v-model="newPerson.name"/>
+        </div>
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="text" v-model="newPerson.age"/>
+        </div>
+        <div class="form-group">
+            <label>Sex:</label>
+            <select v-model="newPerson.sex">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label></label>
+            <button @click="createPerson">Create</button>
+        </div>
+    </fieldset>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Modify</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="person in people">
+            <td v-show='false' v-model="person._id">{{ person._id }}</td>
+            <td><input type="text" value="{{ person.name }}" v-model="person.name"></td>
+            <td><input type="text" value="{{ person.age }}" v-model="person.age"></td>
+            <td><input type="text" value="{{ person.sex }}" v-model="person.sex"></td>
+            <td :class="'text-center'">
+                <button @click="updatePerson($index)">Update</button>
+                <button @click="deletePerson($index)" style="background-color: #FF4949;">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+<!--<script src="//cdn.bootcss.com/vue/1.0.2/vue.min.js"></script>-->
+<script src="//cdn.bootcss.com/vue/1.0.28-csp/vue.min.js"></script>
+<script src="//cdn.bootcss.com/vue-resource/1.0.3/vue-resource.common.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            newPerson: {
+                name: 'hello world',
+                age: 0,
+                sex: 'Male'
+            },
+            people: []
+        },
+        ready: function() {
+            this.getPerson()
+        },
+        methods:{
+            getPerson: function(){
+                this.$http.get('/getDemo', {}).then((response) => {
+                    console.log(response.body.result);
+                    this.$set('people', response.body.result.data);
+                }, (response) => {
+                    this.$set('people', []);
+                });
+            },
+            createPerson: function() {
+                this.$http.get('/setDemo', {params: this.newPerson}).then((response) => {
+                    this.people.push(this.newPerson);
+                    this.newPerson = {name: 'hello world', age: 0, sex: 'Male'}
+                }, (response) => {
+                    console.log(response);
+                });
+            },
+            updatePerson: function(index) {
+                this.$http.get('/updateDemo', {params: this.people[index]}).then((response) => {
+                    console.log(response);
+                }, (response) => {
+                    console.log(response);
+                });
+            },
+            deletePerson: function(index) {
+                this.$http.get('/delDemo', {params: this.people[index]}).then((response) => {
+                    this.people.splice(index,1);
+                }, (response) => {
+                    console.log(response);
+                });
+            }
+        }
+    })
+</script>
+
+</html>
