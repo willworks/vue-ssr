@@ -22,6 +22,11 @@
     $ npm install
     ```
 
+ - build vue
+    ```shell
+    npm run dist
+    ```
+
  - run
     ```shell
     $ npm run local /* read local dev config */
@@ -30,6 +35,9 @@
     $ open http://localhost:3000/demo.html
     ```
 
-## Questions & Suggestions
+## Q&A
 
 Please open an issue [here](https://github.com/willworks/vue-ssr/issues).
+
+## License
+MIT

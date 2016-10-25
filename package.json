@@ -1,9 +1,26 @@
 {
   "name": "vue-ssr",
+  "version": "1.0.0",
   "description": "vue server render",
   "private": true,
-  "version": "0.1.0",
   "main": "bin/run",
+  "scripts": {
+    "start": "NODE_ENV=local babel-node ./bin/run",
+    "prod": "NODE_ENV=prod babel-node ./bin/run",
+    "local": "NODE_ENV=local babel-node ./bin/run",
+    "appdev": "cooking watch -p",
+    "appbuild": "cooking build",
+    "test": "cooking test karma start --single-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willworks/vue-ssr/vue-ssr.git"
+  },
+  "homepage": "https://github.com/willworks/vue-ssr/vue-ssr#readme",
+  "bugs": {
+    "url": "https://github.com/willworks/vue-ssr/vue-ssr/issues"
+  },
+
   "dependencies": {
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-stage-2": "^6.13.0",
@@ -18,22 +35,39 @@
     "koa-static": "^3.0.0",
     "koa-views": "^5.0.1",
     "mongoose": "^4.6.4",
-    "nunjucks": "^2.4.2"
+    "nunjucks": "^2.4.2",
+    "vue": "^1.0.0",
+    "babel-polyfill": "*"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-eslint": "^6.1.2",
     "eslint": "^3.3.1",
-    "eslint-config-airbnb-base": "^5.0.2"
-  },
-  "scripts": {
-    "start": "NODE_ENV=local babel-node ./bin/run",
-    "prod": "NODE_ENV=prod babel-node ./bin/run",
-    "local": "NODE_ENV=local babel-node ./bin/run"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://git.coding.net/willworks/vue-ssr.git"
+    "eslint-config-airbnb-base": "^5.0.2",
+    "cooking-vue": "*",
+    "cooking": "^1.0.0",
+    "cooking-vue": "*",
+    "cooking-lint": "*",
+    "cooking-sass": "*",
+    "cooking-autoprefixer": "*",
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-plugin-transform-runtime": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "babel-preset-stage-0": "^6.0.0",
+    "babel-preset-stage-2": "^6.0.0",
+    "css-loader": "^0.24.0",
+    "extract-text-webpack-plugin": "^1.0.0",
+    "file-loader": "^0.9.0",
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.9.0",
+    "json-loader": "^0.5.4",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.0",
+    "webpack-dev-server": "^1.14.0",
+    "postcss": "^5.1.0",
+    "postcss-loader": "^0.11.1"
   },
   "keywords": [
     "vue ssr",

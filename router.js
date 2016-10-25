@@ -4,7 +4,7 @@ import demo from './controllers/demo';
 const router = new Router();
 
 // ====== demo ======
-router.get('/demo', demo.index);
+router.get('/demo', demo.demo);
 router.get('/setDemo', demo.setDemo);
 router.get('/getDemo', demo.getDemo);
 router.get('/delDemo', demo.delDemo);
