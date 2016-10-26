@@ -1,5 +1,9 @@
 import DemoModel from '../models/demo';
 
+exports.index = async (ctx, next) => {
+  await ctx.render('index.html');
+};
+
 // diff between Schema.statics & Schema.methods
 exports.demo = async (ctx, next) => {
   let demo = new DemoModel({'demo': 'demo'});

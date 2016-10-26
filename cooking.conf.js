@@ -6,7 +6,7 @@ cooking.set({
     app: ['babel-polyfill', './appsrc/main.js']
   },
   dist: './app',
-  template: './appsrc/index.tpl',
+  // template: './appsrc/index.tpl',
 
   devServer: {
     port: 8080,
@@ -15,17 +15,17 @@ cooking.set({
 
   // production
   clean: true,
-  hash: true,
-  sourceMap: true,
+  // hash: true,
+  // sourceMap: true,
   minimize: true,
-  chunk: true, // see https://cookingjs.github.io/zh-cn/configuration.html#chunk
+  // chunk: true, // see https://cookingjs.github.io/zh-cn/configuration.html#chunk
   postcss: [
     // require('...')
   ],
   publicPath: '/',
   assetsPath: 'static',
   urlLoaderLimit: 10000,
-  extractCSS: '[name].[contenthash:7].css',
+  // extractCSS: '[name].[contenthash:7].css',
   alias: {
     'src': path.join(__dirname, 'appsrc')
   },
