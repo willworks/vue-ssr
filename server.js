@@ -19,13 +19,11 @@ dbHandler.dbHandler();
 
 app.use(finalHandler());
 
-/** dis templ engine
 app.use(views(`${__dirname}/views`, {
   map: {
     html: 'nunjucks'
   }
 }));
-*/
 
 app.use(logger());
 app.use(bodyParser());
