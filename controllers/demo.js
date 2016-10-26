@@ -1,7 +1,11 @@
 import DemoModel from '../models/demo';
 
-// diff between Schema.statics & Schema.methods
 exports.index = async (ctx, next) => {
+  await ctx.render('index.html');
+};
+
+// diff between Schema.statics & Schema.methods
+exports.demo = async (ctx, next) => {
   let demo = new DemoModel({'demo': 'demo'});
   demo.callInEntity();
   DemoModel.callInModel();

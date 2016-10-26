@@ -18,16 +18,18 @@ const app = new Koa();
 dbHandler.dbHandler();
 
 app.use(finalHandler());
+
 app.use(views(`${__dirname}/views`, {
   map: {
     html: 'nunjucks'
   }
 }));
+
 app.use(logger());
 app.use(bodyParser());
 app.use(convert(session(app)));
-app.use(ingoreFavicon(__dirname + '/public/favicon.ico'));
-app.use(serve(__dirname + '/public'));
+app.use(ingoreFavicon(__dirname + '/app/favicon.ico'));
+app.use(serve(__dirname + '/app'));
 app
   .use(router.routes())
   .use(router.allowedMethods());
