@@ -11,7 +11,8 @@
     "lint": "eslint controllers middlewares models services appsrc views",
     "appdev": "cooking watch -p",
     "appbuild": "cooking build",
-    "test": "cooking test karma start --single-run"
+    "test": "cooking test karma start --single-run",
+    "postinstall": "babel-node scripts/postinstall.js"
   },
   "repository": {
     "type": "git",
