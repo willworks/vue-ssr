@@ -5,13 +5,14 @@
   "private": true,
   "main": "bin/run",
   "scripts": {
+    "test": "mocha",
+    "test-cov": "babel-node ./node_modules/istanbul/lib/cli.js --include-all-sources cover ./node_modules/.bin/_mocha",
     "start": "cooking build && NODE_ENV=local babel-node ./bin/run",
     "prod": "NODE_ENV=prod babel-node ./bin/run",
     "local": "NODE_ENV=local babel-node ./bin/run",
     "lint": "eslint controllers middlewares models services appsrc views",
     "appdev": "cooking watch -p",
     "appbuild": "cooking build",
-    "test": "cooking test karma start --single-run",
     "postinstall": "babel-node scripts/postinstall.js"
   },
   "repository": {
@@ -65,10 +66,15 @@
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.9.0",
+    "intelli-espower-loader": "^1.0.1",
     "json-loader": "^0.5.4",
+    "mocha": "^3.1.2",
     "postcss": "^5.1.0",
     "postcss-loader": "^0.11.1",
+    "power-assert": "^1.4.2",
     "style-loader": "^0.13.1",
+    "supertest": "^2.0.1",
+    "thunk-mocha": "^1.0.8",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.0",
     "webpack-dev-server": "^1.14.0"
