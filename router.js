@@ -4,12 +4,16 @@ import demo from './controllers/demo';
 const router = new Router();
 
 // ====== demo ======
+
+// ====== spa entence ======
 router.get('/', demo.index);
-router.get('/demo', demo.demo);
-router.get('/setDemo', demo.setDemo);
-router.get('/getDemo', demo.getDemo);
-router.get('/delDemo', demo.delDemo);
-router.get('/updateDemo', demo.updateDemo);
+
+// ====== api ======
+router.get('/api/demo', demo.demo);
+router.get('/api/setDemo', demo.setDemo);
+router.get('/api/getDemo', demo.getDemo);
+router.get('/api/delDemo', demo.delDemo);
+router.get('/api/updateDemo', demo.updateDemo);
 
 // ====== app route ======
 
