@@ -9,3 +9,4 @@ node_modules
 .gitkeep
 converage
 npm-debug.log
+coverage
